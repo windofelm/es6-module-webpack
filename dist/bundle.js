@@ -98,8 +98,7 @@ if (typeof window !== 'undefined') {
 console.log(_decorator.MyHeroClass.isSuperHero);
 console.log(_decorator.MySuperHeroClass.isSuperHero);
 
-var shc = new _decorator.MySuperHeroClass();
-console.log(shc.calculate());
+console.log(new _decorator.MySuperHeroClass().calculate());
 
 /***/ }),
 /* 1 */
