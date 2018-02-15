@@ -70,47 +70,32 @@
 "use strict";
 
 
-var _dec, _class, _dec2, _class2;
+var _math = __webpack_require__(1);
 
-var _module = __webpack_require__(1);
-
-var _module2 = _interopRequireDefault(_module);
+var _math2 = _interopRequireDefault(_math);
 
 var _jquery = __webpack_require__(2);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _decorator = __webpack_require__(3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var summy = (0, _math2.default)(5, 6);
 
-var summy = (0, _module2.default)(5, 6);
-console.log(summy);
+if (typeof window !== 'undefined') {
+    window.onload = function () {
+        // all of your code goes in here
+        // it runs after the DOM is built
 
-/*window.onload = function() {
-    // all of your code goes in here
-    // it runs after the DOM is built
-
-    //document.getElementById("head").innerHTML = summy;
-    $('#head').text(summy + 9);
-};*/
-
-var MyHeroClass = (_dec = superhero(false), _dec(_class = function MyHeroClass() {
-    _classCallCheck(this, MyHeroClass);
-}) || _class);
-var MySuperHeroClass = (_dec2 = superhero(true), _dec2(_class2 = function MySuperHeroClass() {
-    _classCallCheck(this, MySuperHeroClass);
-}) || _class2);
-
-
-function superhero(isSuperHero) {
-    return function (target) {
-        target.isSuperHero = isSuperHero;
+        //document.getElementById("head").innerHTML = summy;
+        (0, _jquery2.default)('#head').text(summy + 9);
     };
 }
 
-console.log(MyHeroClass.isSuperHero);
-console.log(MySuperHeroClass.isSuperHero);
+console.log(_decorator.MyHeroClass.isSuperHero);
+console.log(_decorator.MySuperHeroClass.isSuperHero);
 
 /***/ }),
 /* 1 */
@@ -10497,6 +10482,35 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _dec, _class, _dec2, _class2;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MyHeroClass = exports.MyHeroClass = (_dec = superhero(false), _dec(_class = function MyHeroClass() {
+    _classCallCheck(this, MyHeroClass);
+}) || _class);
+var MySuperHeroClass = exports.MySuperHeroClass = (_dec2 = superhero(true), _dec2(_class2 = function MySuperHeroClass() {
+    _classCallCheck(this, MySuperHeroClass);
+}) || _class2);
+
+
+function superhero(isSuperHero) {
+    return function (target) {
+        target.isSuperHero = isSuperHero;
+    };
+}
 
 /***/ })
 /******/ ]);
