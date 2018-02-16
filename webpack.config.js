@@ -1,10 +1,16 @@
+
 const path = require('path');
+const webpack = require("webpack");
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        "bundle": "./src/main.js",
+        "bundle.min": "./src/main.js",
+    },
+    devtool: "source-map",
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        filename: "[name].js"
     },
     module: {
         rules: [
@@ -14,11 +20,17 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        plugins: ['transform-decorators-legacy' ],
+                        plugins: ['transform-decorators-legacy'],
                         presets: ['es2015']
                     }
                 }
             }
         ]
     },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({ // for minify
+            include: /\.min\.js$/,
+            minimize: true
+        })
+    ]
 };
