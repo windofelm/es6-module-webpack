@@ -98,7 +98,9 @@ if (typeof window !== 'undefined') {
 console.log(_decorator.MyHeroClass.isSuperHero);
 console.log(_decorator.MySuperHeroClass.isSuperHero);
 
-console.log(new _decorator.MySuperHeroClass().calculate());
+var superHero = new _decorator.MySuperHeroClass();
+console.log(superHero.calculate());
+console.log(superHero.title);
 
 /***/ }),
 /* 1 */
@@ -10500,9 +10502,9 @@ exports.MySuperHeroClass = exports.MyHeroClass = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _class, _dec2, _class2, _desc, _value, _class3;
+var _dec, _class, _dec2, _dec3, _class2, _desc, _value, _class3;
 
-var _debounceDecorator = __webpack_require__(4);
+var _timeDecorator = __webpack_require__(4);
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
@@ -10538,7 +10540,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var MyHeroClass = exports.MyHeroClass = (_dec = superhero(false), _dec(_class = function MyHeroClass() {
     _classCallCheck(this, MyHeroClass);
 }) || _class);
-var MySuperHeroClass = exports.MySuperHeroClass = (_dec2 = superhero(true), _dec2(_class2 = (_class3 = function () {
+var MySuperHeroClass = exports.MySuperHeroClass = (_dec2 = superhero(true), _dec3 = custommeta({
+    title: "Sample title.",
+    description: "Sample description."
+}), _dec2(_class2 = _dec3(_class2 = (_class3 = function () {
     function MySuperHeroClass() {
         _classCallCheck(this, MySuperHeroClass);
     }
@@ -10551,12 +10556,20 @@ var MySuperHeroClass = exports.MySuperHeroClass = (_dec2 = superhero(true), _dec
     }]);
 
     return MySuperHeroClass;
-}(), (_applyDecoratedDescriptor(_class3.prototype, "calculate", [_debounceDecorator.measureTime], Object.getOwnPropertyDescriptor(_class3.prototype, "calculate"), _class3.prototype)), _class3)) || _class2);
+}(), (_applyDecoratedDescriptor(_class3.prototype, "calculate", [_timeDecorator.measureTime], Object.getOwnPropertyDescriptor(_class3.prototype, "calculate"), _class3.prototype)), _class3)) || _class2) || _class2);
 
 
 function superhero(isSuperHero) {
     return function (target) {
         target.isSuperHero = isSuperHero;
+    };
+}
+
+function custommeta(metaObject) {
+    return function (target) {
+        Object.keys(metaObject).forEach(function (key) {
+            return target.prototype[key] = metaObject[key];
+        });
     };
 }
 

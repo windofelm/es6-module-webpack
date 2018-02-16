@@ -18,7 +18,9 @@ if(typeof window !== 'undefined'){
 console.log(MyHeroClass.isSuperHero);
 console.log(MySuperHeroClass.isSuperHero);
 
-console.log(new MySuperHeroClass().calculate());
+let superHero = new MySuperHeroClass();
+console.log(superHero.calculate());
+console.log(superHero.title);
 
 
 
